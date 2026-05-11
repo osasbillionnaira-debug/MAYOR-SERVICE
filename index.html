@@ -14,16 +14,7 @@
             --glass: rgba(255, 255, 255, 0.03);
         }
 
-        * { cursor: none; } 
-
-        body {
-            margin: 0;
-            background-color: var(--bg);
-            color: #ffffff;
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-        }
-
+        /* Custom Cursor for Desktop */
         #cursor {
             width: 20px;
             height: 20px;
@@ -36,6 +27,16 @@
             mix-blend-mode: difference;
         }
 
+        body {
+            margin: 0;
+            background-color: var(--bg);
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Navigation */
         nav {
             position: fixed;
             top: 20px;
@@ -57,6 +58,7 @@
         .logo { font-family: 'Unbounded'; font-size: 0.9rem; letter-spacing: 2px; }
         .logo span { color: var(--primary); }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -75,7 +77,7 @@
             text-transform: uppercase;
         }
 
-        /* NEW: About Section */
+        /* About Section */
         .about-section {
             padding: 100px 10%;
             display: grid;
@@ -86,20 +88,14 @@
         }
 
         .about-text h2 {
-            font-family: 'Unbounded';
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
+            font-family: 'Unbounded'; font-size: 1.5rem; color: var(--primary); margin-bottom: 20px;
         }
 
         .about-text p {
-            line-height: 1.8;
-            color: #888;
-            font-size: 1rem;
-            margin-bottom: 20px;
+            line-height: 1.8; color: #888; font-size: 1rem; margin-bottom: 20px;
         }
 
-        /* Gallery Grid */
+        /* Image Gallery Grid */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -115,17 +111,17 @@
             background: #000;
         }
 
-        .project video {
+        .project-img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
+            object-fit: cover; /* Prevents squashing */
+            opacity: 0.7;
             transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
-        .project:hover video {
+        .project:hover .project-img {
             opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .overlay {
@@ -150,7 +146,7 @@
         }
 
         footer {
-            padding: 100px 5%;
+            padding: 80px 5%;
             text-align: center;
             border-top: 1px solid #111;
         }
@@ -159,7 +155,7 @@
             .gallery { grid-template-columns: 1fr; }
             .about-section { grid-template-columns: 1fr; padding: 60px 5%; }
             #cursor { display: none; }
-            * { cursor: auto; }
+            body { cursor: auto; }
         }
     </style>
 </head>
@@ -169,65 +165,61 @@
 
     <nav>
         <div class="logo">MAYOR<span>SERVICES</span></div>
-        <div style="font-size: 0.6rem; font-weight: 800; color: #555;">PORTFOLIO v2.0</div>
+        <div style="font-size: 0.6rem; font-weight: 800; color: #555;">PORTFOLIO v3.1</div>
     </nav>
 
     <section class="hero">
         <p style="letter-spacing: 10px; color: var(--primary); font-size: 0.7rem; margin-bottom: 20px;">ESTABLISHED 2026</p>
-        <h1>ELITE<br>MOTION</h1>
+        <h1>ELITE<br>VISION</h1>
     </section>
 
     <section class="about-section">
         <div class="about-text">
-            <h2>The Art of 3D</h2>
-            <p>3D Design is the architecture of the digital realm. It goes beyond flat imagery to build volume, depth, and physical presence. By manipulating light, texture, and geometry, we create environments and assets that aren't just seen—they are experienced.</p>
-            <p>From hyper-realistic product renders to complex motion graphics, 3D design is the ultimate tool for visual dominance in 2026.</p>
+            <h2>3D Concepts</h2>
+            <p>3D Design is the art of volume and light. By utilizing advanced rendering techniques, we transform static ideas into hyper-realistic digital artifacts that carry depth and impact.</p>
         </div>
         <div class="about-text">
-            <h2>The Designer</h2>
-            <p>Mayor is a Visionary Digital Architect specializing in 3D visualization and motion. With a deep technical background in asset modeling and lighting, Mayor transforms raw concepts into high-fidelity digital reality.</p>
-            <p>Every render is a balance of precision engineering and creative storytelling, designed to elevate brands and captivate audiences globally.
-            EHEN HE IS ALSO A RICH AND FUNNY GUY 
-            I PRAY I PASS HIS INTERVIEW TOO 🤌😂</p>
+            <h2>The Visionary</h2>
+            <p>Mayor is a specialized Digital Artist focused on precision 3D rendering. Every project is crafted to highlight the unique textures and geometry of the digital world.</p>
         </div>
     </section>
 
     <section class="gallery">
         <div class="project">
-            <video autoplay muted loop playsinline src="video1.mp4"></video>
+            <img src="img1.jpg" alt="3D Work" class="project-img">
             <div class="overlay">
-                <h3>3D DESIGN</h3>
+                <h3>ENVIRONMENT VIZ</h3>
                 <a href="https://wa.me/2349032320783" class="order-trigger">REQUEST PROJECT</a>
             </div>
         </div>
 
         <div class="project">
-            <video autoplay muted loop playsinline src="video2.mp4"></video>
+            <img src="img2.jpg" alt="3D Work" class="project-img">
             <div class="overlay">
-                <h3>3D DESIGN</h3>
+                <h3>PRODUCT DESIGN</h3>
                 <a href="https://wa.me/2349032320783" class="order-trigger">REQUEST PROJECT</a>
             </div>
         </div>
 
         <div class="project">
-            <video autoplay muted loop playsinline src="video3.mp4"></video>
+            <img src="img3.jpg" alt="3D Work" class="project-img">
             <div class="overlay">
-                <h3>3D DESIGN</h3>
+                <h3>ASSET MODELING</h3>
                 <a href="https://wa.me/2349032320783" class="order-trigger">REQUEST PROJECT</a>
             </div>
         </div>
 
         <div class="project">
-            <video autoplay muted loop playsinline src="video4.mp4"></video>
+            <img src="img4.jpg" alt="3D Work" class="project-img">
             <div class="overlay">
-                <h3>3D DESIGN</h3>
+                <h3>VISUAL ARCHITECTURE</h3>
                 <a href="https://wa.me/2349032320783" class="order-trigger">REQUEST PROJECT</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p style="font-size: 0.7rem; color: #333;">&copy; 2026 MAYOR 3D • DESIGNED BY KELVIN</p>
+        <p style="font-size: 0.7rem; color: #333;">&copy; 2026 MAYOR SERVICES • DESIGNED BY KELVIN</p>
     </footer>
 
     <script>

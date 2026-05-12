@@ -10,11 +10,24 @@
         :root {
             --primary: #00e5ff;
             --bg: #030303;
-            --card: #0a0a0a;
             --glass: rgba(255, 255, 255, 0.03);
         }
 
-        /* Custom Cursor for Desktop */
+        /* Smooth page transitions */
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         #cursor {
             width: 20px;
             height: 20px;
@@ -36,7 +49,6 @@
             cursor: none;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 20px;
@@ -58,102 +70,99 @@
         .logo { font-family: 'Unbounded'; font-size: 0.9rem; letter-spacing: 2px; }
         .logo span { color: var(--primary); }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
+        .back-link {
+            font-family: 'Unbounded';
+            font-size: 0.6rem;
+            color: var(--primary);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: none; /* Only show on gallery page */
+        }
+
+        /* HOME PAGE STYLES */
+        .hero-top {
+            height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background-image: radial-gradient(circle at 50% 50%, #00e5ff0a 0%, transparent 50%);
         }
 
-        .hero h1 {
-            font-family: 'Unbounded';
-            font-size: clamp(3rem, 15vw, 8rem);
-            line-height: 0.8;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        /* About Section */
         .about-section {
-            padding: 100px 10%;
+            padding: 60px 10%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-            border-top: 1px solid #111;
             background: #050505;
         }
 
-        .about-text h2 {
-            font-family: 'Unbounded'; font-size: 1.5rem; color: var(--primary); margin-bottom: 20px;
+        .about-text h2 { font-family: 'Unbounded'; font-size: 1.5rem; color: var(--primary); margin-bottom: 20px; }
+        .about-text p { line-height: 1.8; color: #888; font-size: 1.1rem; }
+
+        .cta-section {
+            padding: 100px 5%;
+            text-align: center;
         }
 
-        .about-text p {
-            line-height: 1.8; color: #888; font-size: 1rem; margin-bottom: 20px;
+        .cta-section h1 { font-family: 'Unbounded'; font-size: clamp(2rem, 8vw, 4.5rem); margin-bottom: 40px; }
+
+        .cta-works {
+            font-family: 'Unbounded';
+            font-size: 0.8rem;
+            color: #000;
+            padding: 22px 50px;
+            background: var(--primary);
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 900;
+            border: none;
+            cursor: none;
+            transition: 0.3s;
         }
 
-        /* Image Gallery Grid */
-        .gallery {
+        .cta-works:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(0, 229, 255, 0.4); }
+
+        /* GALLERY PAGE STYLES */
+        .gallery-container { padding: 120px 20px 60px 20px; }
+        
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2px;
-            background: #111;
-            border-top: 1px solid #111;
+            grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+            gap: 10px;
         }
 
         .project {
+            height: 550px;
+            background: #0a0a0a;
+            border: 1px solid #111;
             position: relative;
-            height: 500px;
             overflow: hidden;
-            background: #000;
         }
 
-        .project-img {
+        .project img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Prevents squashing */
+            object-fit: cover;
             opacity: 0.7;
-            transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            transition: 0.6s;
         }
 
-        .project:hover .project-img {
-            opacity: 1;
-            transform: scale(1.1);
-        }
+        .project:hover img { opacity: 1; transform: scale(1.03); }
 
-        .overlay {
+        .project-label {
             position: absolute;
-            bottom: 40px;
-            left: 40px;
-            z-index: 10;
-        }
-
-        .overlay h3 { font-family: 'Unbounded'; font-size: 0.8rem; margin: 0; letter-spacing: 2px; }
-        
-        .order-trigger {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary);
-            text-decoration: none;
+            bottom: 30px;
+            left: 30px;
+            font-family: 'Unbounded';
             font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 5px;
-        }
-
-        footer {
-            padding: 80px 5%;
-            text-align: center;
-            border-top: 1px solid #111;
+            letter-spacing: 2px;
         }
 
         @media (max-width: 768px) {
-            .gallery { grid-template-columns: 1fr; }
-            .about-section { grid-template-columns: 1fr; padding: 60px 5%; }
+            .about-section { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
             #cursor { display: none; }
             body { cursor: auto; }
         }
@@ -164,74 +173,86 @@
     <div id="cursor"></div>
 
     <nav>
-        <div class="logo">MAYOR<span>SERVICES</span></div>
-        <div style="font-size: 0.6rem; font-weight: 800; color: #555;">PORTFOLIO v3.1</div>
+        <div class="logo" onclick="showHome()" style="cursor: none;">MAYOR<span>SERVICES</span></div>
+        <div id="backNav" class="back-link" onclick="showHome()">← Back to Profile</div>
     </nav>
 
-    <section class="hero">
-        <p style="letter-spacing: 10px; color: var(--primary); font-size: 0.7rem; margin-bottom: 20px;">ESTABLISHED 2026</p>
-        <h1>ELITE<br>VISION</h1>
-    </section>
+    <main id="homePage" class="page active-page">
+        <section class="hero-top">
+            <p style="letter-spacing: 10px; color: var(--primary); font-size: 0.7rem;">ESTABLISHED 2026</p>
+            <h1 style="font-family: 'Unbounded'; font-size: 3rem; margin-top: 20px;">EXECUTIVE<br>MOTION</h1>
+        </section>
 
-    <section class="about-section">
-        <div class="about-text">
-            <h2>3D Concepts</h2>
-            <p>3D Design is the art of volume and light. By utilizing advanced rendering techniques, we transform static ideas into hyper-realistic digital artifacts that carry depth and impact.</p>
-        </div>
-        <div class="about-text">
-            <h2>The Visionary</h2>
-            <p>Mayor is a specialized Digital Artist focused on precision 3D rendering. Every project is crafted to highlight the unique textures and geometry of the digital world.</p>
-        </div>
-    </section>
+        <section class="about-section">
+            <div class="about-text">
+                <h2>The Visionary</h2>
+                <p>Mayor is a specialized Digital Artist focused on precision 3D rendering and motion aesthetics. He builds digital environments that feel tangible and immersive.</p>
+            </div>
+            <div class="about-text">
+                <h2>The Studio</h2>
+                <p>Mayor Services bridges the gap between abstract concept and commercial reality through industry-leading software and creative grit.</p>
+            </div>
+        </section>
 
-    <section class="gallery">
-        <div class="project">
-            <img src="img1.jpg" alt="3D Work" class="project-img">
-            <div class="overlay">
-                <h3>3D DESIGN</h3>
-                <a href="https://wa.me/2349032320783" class="order-trigger">REQUEST PROJECT</a>
+        <section class="cta-section">
+            <h1>THE MAYOR EXPERIENCE</h1>
+            <button class="cta-works" onclick="showWorks()">SHOW HIS WORKS →</button>
+        </section>
+    </main>
+
+    <main id="worksPage" class="page">
+        <div class="gallery-container">
+            <h2 style="font-family: 'Unbounded'; margin-bottom: 40px; text-align: center; color: var(--primary);">PROJECT ARCHIVE</h2>
+            <div class="gallery-grid">
+                <div class="project"><img src="IMG-20241020-WA0019.jpg" alt=""><div class="project-label">01 / DESIGN</div></div>
+                <div class="project"><img src="IMG-20241020-WA0020.jpg" alt=""><div class="project-label">02 / DESIGN</div></div>
+                <div class="project"><img src="IMG-20241020-WA0021.jpg" alt=""><div class="project-label">03 / DESIGN</div></div>
+                <div class="project"><img src="IMG-20241020-WA0023.jpg" alt=""><div class="project-label">04 / DESIGN</div></div>
+                <div class="project"><img src="IMG-20241020-WA0024.jpg" alt=""><div class="project-label">05 / DESIGN</div></div>
+                <div class="project"><img src="IMG-20241020-WA0027.jpg" alt=""><div class="project-label">06 / DESIGN</div></div>
+                <div class="project"><img src="IMG-20241020-WA0030.jpg" alt=""><div class="project-label">07 / DESIGN</div></div>
+                <div class="project"><img src="" alt=""><div class="project-label">08 / DESIGN</div></div>
+                <div class="project"><img src="" alt=""><div class="project-label">09 / DESIGN</div></div>
+                <div class="project"><img src="" alt=""><div class="project-label">10 / DESIGN</div></div>
             </div>
         </div>
+    </main>
 
-        <div class="project">
-            <img src="img2.jpg" alt="3D Work" class="project-img">
-            <div class="overlay">
-                <h3>3D DESIGN</h3>
-                <a href="https://wa.me/2349032320783" class="order-trigger">REQUEST PROJECT</a>
-            </div>
-        </div>
-
-        <div class="project">
-            <img src="img3.jpg" alt="3D Work" class="project-img">
-            <div class="overlay">
-                <h3>3D DESIGN</h3>
-                <a href="https://wa.me/2349032320783" class="order-trigger">REQUEST PROJECT</a>
-            </div>
-        </div>
-
-        <div class="project">
-            <img src="img4.jpg" alt="3D Work" class="project-img">
-            <div class="overlay">
-                <h3>3D DESIGN</h3>
-                <a href="https://wa.me/2349032320783" class="order-trigger">REQUEST PROJECT</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p style="font-size: 0.7rem; color: #333;">&copy; 2026 MAYOR SERVICES • DESIGNED BY KELVIN</p>
+    <footer style="text-align: center; padding: 60px 0; border-top: 1px solid #111;">
+        <p style="font-size: 0.6rem; color: #333; letter-spacing: 2px;">&copy; 2026 MAYOR SERVICES • DESIGNED BY KELVIN</p>
     </footer>
 
     <script>
+        // Custom Cursor Logic
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseenter', () => cursor.style.transform = 'scale(3)');
-            link.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+        // Navigation Logic
+        const homePage = document.getElementById('homePage');
+        const worksPage = document.getElementById('worksPage');
+        const backNav = document.getElementById('backNav');
+
+        function showWorks() {
+            homePage.classList.remove('active-page');
+            worksPage.classList.add('active-page');
+            backNav.style.display = 'block';
+            window.scrollTo(0,0);
+        }
+
+        function showHome() {
+            worksPage.classList.remove('active-page');
+            homePage.classList.add('active-page');
+            backNav.style.display = 'none';
+            window.scrollTo(0,0);
+        }
+
+        // Cursor Scaling for links/buttons
+        document.querySelectorAll('button, .logo, .back-link').forEach(elem => {
+            elem.addEventListener('mouseenter', () => cursor.style.transform = 'scale(3)');
+            elem.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
         });
     </script>
 </body>
